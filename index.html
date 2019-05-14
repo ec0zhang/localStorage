@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        *{
+            padding: 0;
+            margin: 0;
+            font-size: 30px;
+        }
+        button{
+            width: 100px;
+            height: 30px;
+            margin-top: 50px;
+        }
+    </style>
+</head>
+<body>
+<div id="digit"></div>
+<button id="btn"> + </button>
+
+<script>
+    if(!window.localStorage){
+        alert("浏览器支持 localStorage !");
+    }
+    else{
+        let storage = window.localStorage;
+        storage.setItem('digit','0');
+    }
+
+    // TODO:从 localStorage 获取数据带入页面当中
+    let myDigit = document.getElementById('digit');
+    myDigit.innerText = localStorage.getItem('digit');
+
+
+    let myBtn = document.getElementById('btn');
+    myBtn.onclick = function () {
+        // myDigit.innerText = myDigit.innerText + 1; 这种方法写的数字计算方法是错的，这种写出来只是字符串的拼接
+        let count = eval(myDigit.innerText);
+        myDigit.innerHTML = count + 1;
+
+        //将数据保存在 localStorage 中
+        let storage = window.localStorage;
+        storage.setItem('digit',count+1);
+
+    };
+
+</script>
+
+
+</body>
+</html>
